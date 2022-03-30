@@ -3,6 +3,7 @@ const { PORT, MONGO_URI } = process.env;
 
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 // Database connection
 const connectDB = require("./config/db");
@@ -14,6 +15,7 @@ const errorHandler = require("./middlewares/errorHandler");
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use("/auth/login", require("./routes/auth/login"));
 app.use("/auth/register", require("./routes/auth/register"));
